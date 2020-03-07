@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    bundle: './src/cedit.js',
+    bundle: './src/index.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
