@@ -55,7 +55,16 @@ export const patternLibs = {
   },
   _getPatternLength: (pattern) => {
     let pattLen = 0;
-    if (pattern) {
+    const arrPatterns = pattern.split(';');
+    if (arrPatterns.length > 1) {
+      for (let i = 0; i < arrPatterns.length; i += 1) {
+        const _pattern = arrPatterns[i];
+        if(_pattern) {
+          const _pattLen = _pattern.replace(/(\W)/g, '').trim().length; // 패턴에서 특수기호를 제거한 실제 패턴의 길이
+          pattLen = pattLen < _pattLen ? _pattern.length : pattLen;
+        }
+      }
+    } else {
       pattLen = pattern.length;
       // 패턴이 AAA-AAA같은 형식이 아니라 A(10)형식일 수 있음
       if (pattern.indexOf('(') > -1) {
