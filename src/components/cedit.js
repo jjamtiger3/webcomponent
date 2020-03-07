@@ -22,7 +22,9 @@ class CEdit extends HTMLElement {
     const elem = util._parseHTML(html);
     this.shadowRoot.appendChild(elem);
     this.__input = this.shadowRoot.querySelector('input');
+
     _setCSSStyle(this);
+
     autorun(() => {
       if (this._value.value) {
         const newValue = this._value.value;
