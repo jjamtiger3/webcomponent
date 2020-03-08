@@ -9,7 +9,7 @@ export const patternLibs = {
     let objPattern;
     let _patternedValue = value;
 
-    const splitter = pattern.replace(/[a-zA-Z0-9*().]/g, '')[0];
+    const splitter = pattern.replace(/[AZ()]/g, '')[0];
     if (splitter) {
       // 첫번째 패턴이 두번째 패턴보다 길이가 길면 두번째 패턴이 먼저 나와야 하므로 위치 교환하는 로직
       if(patternLen > 1) {
@@ -39,11 +39,10 @@ export const patternLibs = {
       // 출력값에 실제값을 정규식 변환한 내용을 저장한다.
       const { regExp, repExp } = objPattern;
       _patternedValue = _patternedValue.replace(regExp, repExp);
-      _patternedValue = patternLibs._applyMasking(_patternedValue, pattern);
     }
     return _patternedValue;
   },
-  _applyMasking: (patternValue, pattern) => {
+  _applyMasking: (pattern, patternValue) => {
     let applyValue = patternValue;
     const editLen = applyValue.length;
     for (let pos = 0; pos < editLen; pos += 1) {
